@@ -48,17 +48,17 @@ userScheam.statics.getData = function(name) {
 				name: 'ERROR_DATA',
 				message: '查找数据失败',
 			});
-			console.error(err);
+			console.error(e);
         }
     });
 }
 
 const User = mongoose.model('User', userScheam);
 //初始化 user 数据
-// User.findOne((err, data) => {
-// 	if (!data) {
-// 		User.create({data: {N:[{name: 'nicol yang', age: 22}]}});
-// 	}
-// });
+User.findOne((err, data) => {
+	if (!data) {
+		User.create({data: {N:[{name: 'nicol yang', age: 22}]}});
+	}
+});
 
 export default User;
