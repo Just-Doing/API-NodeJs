@@ -1,6 +1,12 @@
 # API-NodeJs
 Api project with Nodejs and mongodb
 
+## Before running
+```bash
+1. install mongodb
+2. 
+```
+
 ## Usage
 
 ### Use bash
