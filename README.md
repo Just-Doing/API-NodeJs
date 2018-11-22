@@ -2,7 +2,8 @@
 Api project with Nodejs and mongodb
 
 #How to start
-$ git clone git://github.com/schacon/grit.git mygrit
-$ cd ant-design
+$ git clone https://github.com/Just-Doing/API-NodeJs.git
+$ cd API-NodeJs
 $ npm install
-$ npm start
+$ npm run dev
+
