@@ -1,9 +1,10 @@
 # API-NodeJs
 Api project with Nodejs and mongodb
 
-#How to start
-$ git clone https://github.com/Just-Doing/API-NodeJs.git
-$ cd API-NodeJs
+```bash
+$ git clone https://github.com/ant-design/ant-design-pro.git --depth=1
+$ cd ant-design-pro
 $ npm install
-$ npm run dev
+$ npm start         # visit http://localhost:8000
+```
 
