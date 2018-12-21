@@ -1,4 +1,4 @@
-'use strict';
+
 
 module.exports = {
     port: parseInt(process.env.PORT, 10) || 3000,
@@ -13,4 +13,4 @@ module.exports = {
             maxAge:   365 * 24 * 60 * 60 * 1000,
 		}
 	}
-}
+};

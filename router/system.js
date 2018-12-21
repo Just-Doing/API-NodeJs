@@ -1,10 +1,10 @@
-'use strict';
-
-import express from 'express'
-const router = express.Router();
+import express from 'express';
 import UserController from '../controller/system/userController';
 
+const router = express.Router();
 
-router.get('/users/:w', UserController.getData);
+
+router.get('/users/get?:w', UserController.getData);
+router.post('/users/put', UserController.addData);
 
 export default router;

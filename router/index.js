@@ -2,5 +2,5 @@ import system from './system';
 
 
 export default app => {
-    app.use('/system', system)
-}
+    app.use('/system', system);
+};

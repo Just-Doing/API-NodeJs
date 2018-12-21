@@ -1,18 +1,18 @@
 
-var express = require('express');
-var cookieParser = require('cookie-parser');
+const express = require('express');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
 app.use(cookieParser());
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
     console.log(req.cookies.nick); // 第二次访问，输出chyingp
     next();
 });
 
 
-  app.use(function (req, res, next) {  
+  app.use((req, res) => {  
     res.cookie('nick', 'chyingp');
     res.end('ok');
   });
