@@ -1,19 +1,21 @@
 import mongoose from "mongoose";
 
 const userScheam = new mongoose.Schema( {
-    data: {},
+    name: String,
+    age: Number,
+    operateTime: Date,
 } );
 
 // 获取 所有用户信息
 userScheam.statics.getData = function( name ) {
     return new Promise( async ( resolve, reject ) => {
         try{
-            const user = await this.findOne();
-            if( !name ){
-                resolve( user.data );
+            if( name ){
+                const user = await this.find( {name} );
+                resolve( user );
             } else {
-                const users = user.data[name];
-                resolve( users );
+                const user = await this.find();
+                resolve( user );
             }
         }
         catch( e ){
@@ -27,16 +29,12 @@ userScheam.statics.getData = function( name ) {
 };
 
 // 获取 一个用户信息
-userScheam.statics.getUserInfo = function( name ) {
+userScheam.statics.addUserInfo = function( user, cab ) {
     return new Promise( async ( resolve, reject ) => {
         try{
-            const user = await this.findOne();
-            if( !name ){
-                resolve( user.data );
-            } else {
-                const users = user.data[name];
-                resolve( users );
-            }
+            await this.create( user, ( err, candies ) => {
+                cab( err, candies );
+            } );
         }
         catch( e ){
             reject( new Error( {
@@ -49,9 +47,9 @@ userScheam.statics.getUserInfo = function( name ) {
 };
 const User = mongoose.model( "User", userScheam );
 // 初始化 user 数据
-User.findOne( ( err, data ) => {
+User.find( {name: "admin"}, ( err, data ) => {
 	if ( !data ) {
-		User.create( {data: {N:[{name: "nicol yang", age: 22}]}} );
+		User.create( {name: "admin", age: 22} );
 	}
 } );
 

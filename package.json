@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Just-Doing/API-NodeJs#readme",
   "dependencies": {
+    "async-middleware": "^1.2.1",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -31,10 +32,13 @@
     "connect-mongo": "^2.0.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
+    "express-async-errors": "^3.1.1",
     "express-session": "^1.15.6",
     "loadsh": "0.0.3",
+    "log4js": "^3.0.6",
     "mongodb": "^3.1.10",
-    "mongoose": "^5.3.12"
+    "mongoose": "^5.3.12",
+    "validator": "^10.9.0"
   },
   "devDependencies": {
     "babel-plugin-transform-export-extensions": "^6.22.0",

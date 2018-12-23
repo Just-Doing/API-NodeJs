@@ -1,18 +1,16 @@
-import express from "express";
+import Express from "express";
 import UserController from "../controller/system/userController";
 
-const router = express.Router();
+require( "express-async-errors" );
 
+
+const router = Express.Router();
 
 router.get( "/users/get?:w", UserController.getData );
-router.post( "/users/put", UserController.addData );
-router.post( "/test", ( req, res ) => {
-
-    res.send( {test: req} );
-} );
-router.route( "/ttt" ).post( ( req ) => {
-    console.log( req.body );// 这里能够拿到参数
-
-  } );
+router.post( "/users/put",  UserController.addData );
+router.get( "/test",  async ( req, res ) => {
+    JSON.parse( "{{" ); // 抛出异常
+    res.send( {a: "1"} );
+}  );
 
 export default router;
