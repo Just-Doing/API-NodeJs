@@ -29,11 +29,11 @@ userScheam.statics.getData = function( name ) {
 };
 
 // 获取 一个用户信息
-userScheam.statics.addUserInfo = function( user, cab ) {
+userScheam.statics.addUserInfo = function( user ) {
     return new Promise( async ( resolve, reject ) => {
         try{
             await this.create( user, ( err, candies ) => {
-                cab( err, candies );
+                resolve( err, candies );
             } );
         }
         catch( e ){

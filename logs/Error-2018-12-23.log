@@ -1,0 +1,80 @@
+[2018-12-23T21:45:29.070] [ERROR] global - 
+=========================================================================================
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:470:11)
+    at ServerResponse.header (e:\git\API-NodeJs\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (e:\git\API-NodeJs\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (e:\git\API-NodeJs\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (e:\git\API-NodeJs\node_modules\express\lib\response.js:158:21)
+    at e:/git/API-NodeJs/controller/system/loginController.js:10:13
+    at Generator.next (<anonymous>)
+    at step (e:\git\API-NodeJs\controller\system\loginController.js:7:191)
+    at e:\git\API-NodeJs\controller\system\loginController.js:7:437
+    at new Promise (<anonymous>)
+    at e:\git\API-NodeJs\controller\system\loginController.js:7:99
+    at login (e:/git/API-NodeJs/controller/system/loginController.js:5:28)
+    at newFn (e:\git\API-NodeJs\node_modules\express-async-errors\index.js:16:20)
+    at Layer.handle [as handle_request] (e:\git\API-NodeJs\node_modules\express\lib\router\layer.js:95:5)
+    at next (e:\git\API-NodeJs\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (e:\git\API-NodeJs\node_modules\express\lib\router\route.js:112:3)
+=========================================================================================
+[2018-12-23T23:06:46.900] [ERROR] global - 
+=========================================================================================
+ValidationError: operateTime: Cast to Date failed for value "asd" at path "operateTime"
+    at new ValidationError (e:\git\API-NodeJs\node_modules\mongoose\lib\error\validation.js:30:11)
+    at model.Document.invalidate (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:2048:32)
+    at model.$set (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:1011:10)
+    at model._handleIndex (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:785:14)
+    at model.$set (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:731:22)
+    at model.Document (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:116:12)
+    at model.Model (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:90:12)
+    at new model (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:4378:13)
+    at toExecute.push.callback (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:2645:22)
+    at e:\git\API-NodeJs\node_modules\async\internal\parallel.js:31:39
+    at eachOfArrayLike (e:\git\API-NodeJs\node_modules\async\eachOf.js:65:9)
+    at exports.default (e:\git\API-NodeJs\node_modules\async\eachOf.js:9:5)
+    at _parallel (e:\git\API-NodeJs\node_modules\async\internal\parallel.js:30:5)
+    at parallelLimit (e:\git\API-NodeJs\node_modules\async\parallel.js:88:26)
+    at utils.promiseOrCallback.cb (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:2655:5)
+    at Object.promiseOrCallback (e:\git\API-NodeJs\node_modules\mongoose\lib\utils.js:235:14)
+=========================================================================================
+[2018-12-23T23:07:31.165] [ERROR] global - 
+=========================================================================================
+ValidationError: operateTime: Cast to Date failed for value "asd" at path "operateTime"
+    at new ValidationError (e:\git\API-NodeJs\node_modules\mongoose\lib\error\validation.js:30:11)
+    at model.Document.invalidate (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:2048:32)
+    at model.$set (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:1011:10)
+    at model._handleIndex (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:785:14)
+    at model.$set (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:731:22)
+    at model.Document (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:116:12)
+    at model.Model (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:90:12)
+    at new model (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:4378:13)
+    at toExecute.push.callback (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:2645:22)
+    at e:\git\API-NodeJs\node_modules\async\internal\parallel.js:31:39
+    at eachOfArrayLike (e:\git\API-NodeJs\node_modules\async\eachOf.js:65:9)
+    at exports.default (e:\git\API-NodeJs\node_modules\async\eachOf.js:9:5)
+    at _parallel (e:\git\API-NodeJs\node_modules\async\internal\parallel.js:30:5)
+    at parallelLimit (e:\git\API-NodeJs\node_modules\async\parallel.js:88:26)
+    at utils.promiseOrCallback.cb (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:2655:5)
+    at Object.promiseOrCallback (e:\git\API-NodeJs\node_modules\mongoose\lib\utils.js:235:14)
+=========================================================================================
+[2018-12-23T23:08:16.964] [ERROR] global - 
+=========================================================================================
+ValidationError: operateTime: Cast to Date failed for value "asd" at path "operateTime"
+    at new ValidationError (e:\git\API-NodeJs\node_modules\mongoose\lib\error\validation.js:30:11)
+    at model.Document.invalidate (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:2048:32)
+    at model.$set (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:1011:10)
+    at model._handleIndex (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:785:14)
+    at model.$set (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:731:22)
+    at model.Document (e:\git\API-NodeJs\node_modules\mongoose\lib\document.js:116:12)
+    at model.Model (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:90:12)
+    at new model (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:4378:13)
+    at toExecute.push.callback (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:2645:22)
+    at e:\git\API-NodeJs\node_modules\async\internal\parallel.js:31:39
+    at eachOfArrayLike (e:\git\API-NodeJs\node_modules\async\eachOf.js:65:9)
+    at exports.default (e:\git\API-NodeJs\node_modules\async\eachOf.js:9:5)
+    at _parallel (e:\git\API-NodeJs\node_modules\async\internal\parallel.js:30:5)
+    at parallelLimit (e:\git\API-NodeJs\node_modules\async\parallel.js:88:26)
+    at utils.promiseOrCallback.cb (e:\git\API-NodeJs\node_modules\mongoose\lib\model.js:2655:5)
+    at Object.promiseOrCallback (e:\git\API-NodeJs\node_modules\mongoose\lib\utils.js:235:14)
+=========================================================================================

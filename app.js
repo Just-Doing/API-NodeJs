@@ -8,10 +8,9 @@ import chalk from "chalk";
 import { configure, getLogger } from "log4js";
 import router from "./router";
 
-const config =  require( "config-lite" )( __dirname );
-const log4jsConfig = require( "./log4js.js" );
-
 require( "./db/mongodb" );
+const config =  require( "config-lite" )( __dirname );
+const log4jsConfig = require( "./config/log4js.js" );
 
 configure( log4jsConfig );
 const logger = getLogger( "global" );
@@ -53,7 +52,7 @@ app.use( session( {
 router( app );
 
 app.use( ( err, req, res, next ) => { // 全局异常拦截器
-	if( !err ){
+	if( !err ) {
 		next();
 	} else{
 		res.status( err.status || 500 );
@@ -64,6 +63,15 @@ ${err.stack}
 		res.send( {status: 0, msg: "发生错误 请联系管理员！"} );
 	}
 } );
+
+// 登录 拦截器 权限拦截器
+// app.use( ( req, res, next ) => {
+//     const url = req.originalUrl;
+//     if ( url !== "/login" && !req.session.user ) {
+//         res.redirect( "/login" );
+//     }
+//     next();
+// } );
 
 app.listen( config.port, () => {
 	console.log( chalk.green( "App already running on port 3000" ) );
