@@ -1,5 +1,5 @@
 import Mongose from "mongoose";
-import { menuValidator } from "../validateModel";
+import  {menu as menuValidator}  from "../validateModel";
 
 const menuSchema = Mongose.Schema( {
     menuCode: String,
@@ -8,7 +8,7 @@ const menuSchema = Mongose.Schema( {
     icon: String,
 } );
 
-menuSchema.statics.getMenus = function( name ) {
+menuSchema.statics.getMenu = function( name ) {
     return new Promise( async ( resolve, reject ) => {
         try {
             let menu = [];
@@ -20,10 +20,10 @@ menuSchema.statics.getMenus = function( name ) {
             resolve( menu );
         } catch ( error ) {
             reject( new Error( {
-				name: "ERROR_DATA",
-				message: "查找数据失败",
-			} ) );
-			console.error( error );
+                name: "ERROR_DATA",
+                message: "查找数据失败",
+            } ) );
+            console.error( error );
         }
     } );
 };
@@ -32,15 +32,17 @@ menuSchema.statics.addMenu = function( menu ){
     return new Promise( async ( resolve, reject ) => {
         try {
             const msg = menuValidator.validate( menu );
-            if( msg.length ){
+            if( !msg.length ){
                 await this.create( menu, ( err, candies ) => {
                     resolve( err, candies );
                 } );
+            } else{
+                reject( new Error( msg ) );
             }
         } catch ( error ) {
             reject( new Error( {
-				name: "ERROR_DATA",
-				message: "查找数据失败",
+                name: "ERROR_DATA",
+                message: "查找数据失败",
             } ) );
         }
     } );

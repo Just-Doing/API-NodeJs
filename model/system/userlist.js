@@ -1,5 +1,5 @@
 import Mongose from "mongoose";
-import { userValidator } from "../validateModel";
+import  {user as userValidator}  from "../validateModel";
 
 const userScheam = new Mongose.Schema( {
     userName: String,
@@ -21,10 +21,10 @@ userScheam.statics.getData = function( name ) {
         }
         catch( e ){
             reject( new Error( {
-				name: "ERROR_DATA",
-				message: "查找数据失败",
-			} ) );
-			console.error( e );
+                name: "ERROR_DATA",
+                message: "查找数据失败",
+            } ) );
+            console.error( e );
         }
     } );
 };
@@ -42,19 +42,19 @@ userScheam.statics.addUserInfo = function( user ) {
         }
         catch( e ){
             reject( new Error( {
-				name: "ERROR_DATA",
-				message: "查找数据失败",
-			} ) );
-			console.error( e );
+                name: "ERROR_DATA",
+                message: "查找数据失败",
+            } ) );
+            console.error( e );
         }
     } );
 };
 const User = Mongose.model( "System_User", userScheam );
 // 初始化 user 数据
 User.find( {userName: "admin"}, ( err, data ) => {
-	if ( !data ) {
-		User.create( {userName: "admin", age: 22} );
-	}
+    if ( !data ) {
+        User.create( {userName: "admin", age: 22} );
+    }
 } );
 
 export default User;

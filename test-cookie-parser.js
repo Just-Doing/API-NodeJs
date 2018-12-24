@@ -12,10 +12,10 @@ app.use( ( req, res, next ) => {
 } );
 
 
-  app.use( ( req, res ) => {
+app.use( ( req, res ) => {
     res.cookie( "nick", "chyingp" );
     res.end( "ok" );
-  } );
+} );
 
 
 
