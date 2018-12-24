@@ -1,7 +1,8 @@
-import mongoose from "mongoose";
+import Mongose from "mongoose";
+import { userValidator } from "../validateModel";
 
-const userScheam = new mongoose.Schema( {
-    name: String,
+const userScheam = new Mongose.Schema( {
+    userName: String,
     age: Number,
     operateTime: Date,
 } );
@@ -11,7 +12,7 @@ userScheam.statics.getData = function( name ) {
     return new Promise( async ( resolve, reject ) => {
         try{
             if( name ){
-                const user = await this.find( {name} );
+                const user = await this.find( {userName: name} );
                 resolve( user );
             } else {
                 const user = await this.find();
@@ -32,9 +33,12 @@ userScheam.statics.getData = function( name ) {
 userScheam.statics.addUserInfo = function( user ) {
     return new Promise( async ( resolve, reject ) => {
         try{
-            await this.create( user, ( err, candies ) => {
-                resolve( err, candies );
-            } );
+            const msg = userValidator.validate( user );
+            if( msg.length ) {
+                await this.create( user, ( err, candies ) => {
+                    resolve( err, candies );
+                } );
+            }
         }
         catch( e ){
             reject( new Error( {
@@ -45,11 +49,11 @@ userScheam.statics.addUserInfo = function( user ) {
         }
     } );
 };
-const User = mongoose.model( "User", userScheam );
+const User = Mongose.model( "System_User", userScheam );
 // 初始化 user 数据
-User.find( {name: "admin"}, ( err, data ) => {
+User.find( {userName: "admin"}, ( err, data ) => {
 	if ( !data ) {
-		User.create( {name: "admin", age: 22} );
+		User.create( {userName: "admin", age: 22} );
 	}
 } );
 

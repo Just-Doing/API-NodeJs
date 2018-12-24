@@ -3,7 +3,7 @@ import chalk from "chalk";
 
 const config =  require( "config-lite" )( __dirname );
 
-mongoose.connect( config.systemDb, {useMongoClient:true} );
+mongoose.connect( config.systemDb, {useMongoClient: true} );
 mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
