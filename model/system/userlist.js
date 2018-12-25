@@ -34,10 +34,16 @@ userScheam.statics.addUserInfo = function( user ) {
     return new Promise( async ( resolve, reject ) => {
         try{
             const msg = userValidator.validate( user );
-            if( msg.length ) {
+            if( !msg.length ) {
                 await this.create( user, ( err, candies ) => {
                     resolve( err, candies );
                 } );
+            } else {
+                const msgArray = msg.map( o => ( {
+                    path: o.path,
+                    message: o.message,
+                } ) );
+                reject( msgArray );
             }
         }
         catch( e ){

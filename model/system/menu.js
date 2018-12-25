@@ -1,5 +1,4 @@
 import Mongose from "mongoose";
-import  {menu as menuValidator}  from "../validateModel";
 
 const menuSchema = Mongose.Schema( {
     menuCode: String,
@@ -29,21 +28,26 @@ menuSchema.statics.getMenu = function( name ) {
 };
 
 menuSchema.statics.addMenu = function( menu ){
+    return new Promise( async ( resolve ) => {
+        await this.create( menu, ( err, candies ) => {
+            resolve( err, candies );
+        } );
+    } );
+};
+
+menuSchema.statics.delete = function( menu ){
     return new Promise( async ( resolve, reject ) => {
-        try {
-            const msg = menuValidator.validate( menu );
-            if( !msg.length ){
-                await this.create( menu, ( err, candies ) => {
-                    resolve( err, candies );
-                } );
-            } else{
-                reject( new Error( msg ) );
-            }
-        } catch ( error ) {
-            reject( new Error( {
-                name: "ERROR_DATA",
-                message: "查找数据失败",
-            } ) );
+        const dbData = this.findOne( {menuCode: menu.menuCode} );
+        if( dbData ){
+            await this.findOneAndDelete( {menuCode: menu.menuCode}, ( err, doc ) => {
+                if( err ){
+                    reject( new Error( "delete error !" ) );
+                } else {
+                    resolve( doc );
+                }
+            } );
+        } else {
+            reject( new Error( "the menu non-existent !" ) );
         }
     } );
 };
