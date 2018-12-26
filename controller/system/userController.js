@@ -1,5 +1,6 @@
 
 import User from "../../model/system/userlist";
+import  {user as userValidator}  from "../../model/validateModel";
 
 class UserController {
     async getUser( req, res ) {
@@ -13,16 +14,25 @@ class UserController {
 
     async addUser( req, res, next ) {
         const reqBody = req.body;
-        User.addUserInfo( reqBody )
-            .then( ( error, doc ) => {
-                if ( error ) {
-                    next( error );
-                    console.error( error );
-                } else {
-                    res.send( doc );
-                    console.error( doc );
-                }
-            } );
+        const msg = userValidator.validate( reqBody );
+        if( msg.length ) {
+            const msgArray = msg.map( o => ( {
+                path: o.path,
+                message: o.message,
+            } ) );
+            res.send( msgArray );
+        } else {
+            User.addUserInfo( reqBody )
+                .then( ( error, doc ) => {
+                    if ( error ) {
+                        next( error );
+                        console.error( error );
+                    } else {
+                        res.send( doc );
+                        console.error( doc );
+                    }
+                } );
+        }
     }
 
     async setPower( req, res, next ) {

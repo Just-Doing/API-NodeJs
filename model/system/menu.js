@@ -1,6 +1,7 @@
 import Mongose from "mongoose";
 
 const menuSchema = Mongose.Schema( {
+    menuId: String,
     menuCode: String,
     menuName: String,
     menuType: String,
