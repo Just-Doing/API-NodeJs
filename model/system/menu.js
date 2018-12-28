@@ -1,23 +1,18 @@
 import Mongose from "mongoose";
+import { menu } from "../schema";
 
-const menuSchema = Mongose.Schema( {
-    menuId: String,
-    menuCode: String,
-    menuName: String,
-    menuType: String,
-    icon: String,
-} );
+const menuSchema = Mongose.Schema( menu );
 
 menuSchema.statics.getMenu = function( name ) {
     return new Promise( async ( resolve, reject ) => {
         try {
-            let menu = [];
+            let menus = [];
             if( name ){
-                menu = this.find( {menuName: name} );
+                menus = this.find( {menuName: name} );
             } else {
-                menu = this.find();
+                menus = this.find();
             }
-            resolve( menu );
+            resolve( menus );
         } catch ( error ) {
             reject( new Error( {
                 name: "ERROR_DATA",
@@ -28,19 +23,19 @@ menuSchema.statics.getMenu = function( name ) {
     } );
 };
 
-menuSchema.statics.addMenu = function( menu ){
+menuSchema.statics.addMenu = function( menuInfo ){
     return new Promise( async ( resolve ) => {
-        await this.create( menu, ( err, candies ) => {
+        await this.create( menuInfo, ( err, candies ) => {
             resolve( err, candies );
         } );
     } );
 };
 
-menuSchema.statics.delete = function( menu ){
+menuSchema.statics.delete = function( condition ){
     return new Promise( async ( resolve, reject ) => {
-        const dbData = this.findOne( {menuCode: menu.menuCode} );
+        const dbData = this.findOne( {menuCode: condition.menuCode} );
         if( dbData ){
-            await this.findOneAndDelete( {menuCode: menu.menuCode}, ( err, doc ) => {
+            await this.findOneAndDelete( {menuCode: condition.menuCode}, ( err, doc ) => {
                 if( err ){
                     reject( new Error( "delete error !" ) );
                 } else {

@@ -1,6 +1,5 @@
 
 import MenuService from "../../model/system/menu";
-import  {menu as menuValidator}  from "../../model/validateModel";
 
 class MenuController {
     async getMenu( req, res ){
@@ -11,26 +10,21 @@ class MenuController {
 
     async addMenu( req, res, next ){
         const bodyPara = req.body;
-        const msg = menuValidator.validate( bodyPara ); // 校验数据
-        if( msg.length ){
-            const msgArray = msg.map( o => ( {
-                path: o.path,
-                message: o.message,
-            } ) );
-            res.send( {
-                status: 0,
-                msg: msgArray,
-            } );
-        } else {
-            await MenuService.addMenu( bodyPara )
-                .then( ( error, doc ) => {
-                    if ( error ) {
-                        next( error );
+        await MenuService.addMenu( bodyPara )
+            .then( ( error, doc ) => {
+                if ( error ) {
+                    if ( error.name === "ValidationError" ) {
+                        res.send( {
+                            status: 0,
+                            msg: error,
+                        } );
                     } else {
-                        res.send( doc );
+                        next( error );
                     }
-                } );
-        }
+                } else {
+                    res.send( doc );
+                }
+            } );
     }
 
     // 删除菜单
@@ -49,7 +43,10 @@ class MenuController {
                     }
                 } );
         } else {
-            throw new Error( "parameter error" );
+            res.send( {
+                status: 0,
+                msg: "parameter error",
+            } );
         }
     }
 }

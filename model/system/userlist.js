@@ -1,22 +1,19 @@
-import Mongose from "mongoose";
+import Mongose, { ValidationError } from "mongoose";
+import {user} from "../schema";
 
-const userScheam = new Mongose.Schema( {
-    userName: String,
-    age: Number,
-    operateTime: Date,
-} );
+const userScheam = new Mongose.Schema( user );
 
 // 获取 所有用户信息
-userScheam.statics.getData = function( name ) {
-    JSON.parse( "{{" ); // 抛出异常
+userScheam.statics.getData = function( condition ) {
+    const { name, enable } = condition;
     return new Promise( async ( resolve, reject ) => {
         try{
             if( name ){
-                const user = await this.find( {userName: name} );
-                resolve( user );
+                const users = await this.find( { userName: name, enable } );
+                resolve( users );
             } else {
-                const user = await this.find();
-                resolve( user );
+                const users = await this.find();
+                resolve( users );
             }
         }
         catch( e ){
@@ -30,21 +27,25 @@ userScheam.statics.getData = function( name ) {
 };
 
 // 获取 一个用户信息
-userScheam.statics.addUserInfo = function( user ) {
+userScheam.statics.addUserInfo = function( userInfo ) {
     return new Promise( async ( resolve ) => {
-        await this.create( user, ( err, candies ) => {
+        await this.create( userInfo, ( err, candies ) => {
             resolve( err, candies );
         } );
     } );
 };
 
 
-// 获取 一个用户信息
-userScheam.statics.addUserPower = function( user ) {
+// 设置一个用户的 角色权限
+userScheam.statics.setRole = function( userRole ) {
     return new Promise( async ( resolve ) => {
-        await this.create( user, ( err, candies ) => {
-            resolve( err, candies );
-        } );
+        if( userRole.userCode && userRole.roles ) {
+            await this.create( userRole, ( err, candies ) => {
+                resolve( err, candies );
+            } );
+        } else {
+            resolve( new ValidationError( "need userCode and roles" ) );
+        }
     } );
 };
 
