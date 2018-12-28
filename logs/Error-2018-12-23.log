@@ -1,4 +1,4 @@
-[2018-12-23T21:45:29.070] [ERROR] global - 
+[2018-12-23T21:45:29.070] [ERROR] global - 1
 =========================================================================================
 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
     at ServerResponse.setHeader (_http_outgoing.js:470:11)
