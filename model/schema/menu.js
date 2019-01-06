@@ -1,6 +1,5 @@
-import Schema from "validate";
 
-export default new Schema( {
+export default  {
     menuCode: {
         type: String,
         required: true,
@@ -37,4 +36,4 @@ export default new Schema( {
         type: Boolean,
         required: true,
     },
-} );
+};

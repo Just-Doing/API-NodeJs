@@ -5,10 +5,11 @@ require( "express-async-errors" );
 
 const router = Express.Router();
 
-router.get( "/users/get?:name:enable", UserController.getUser );
+router.get( "/users/get?:name?:enable", UserController.getUser );
 router.post( "/users/put",  UserController.addUser );
 router.post( "/users/setRole", UserController.setRole );
-router.get( "/menu/get?:w", MenuController.getMenu );
+router.post( "/users/update", UserController.updateUser );
+router.get( "/menu/get?:name?:enable", MenuController.getMenu );
 router.post( "/menu/put", MenuController.addMenu );
 
 router.post( "/login",  LoginController.login );

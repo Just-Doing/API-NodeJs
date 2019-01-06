@@ -31,6 +31,14 @@ menuSchema.statics.addMenu = function( menuInfo ){
     } );
 };
 
+menuSchema.statics.updateMenu = function( menuInfo ){
+    return new Promise( async ( resolve ) => {
+        await this.updateOne( {menuCode: menuInfo.menuCode}, menuInfo, ( err, candies ) => {
+            resolve( err, candies );
+        } );
+    } );
+};
+
 menuSchema.statics.delete = function( condition ){
     return new Promise( async ( resolve, reject ) => {
         const dbData = this.findOne( {menuCode: condition.menuCode} );

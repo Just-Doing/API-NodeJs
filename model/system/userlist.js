@@ -21,16 +21,19 @@ userScheam.statics.getData = function( condition ) {
                 name: "ERROR_DATA",
                 message: "查找数据失败",
             } ) );
-            console.error( e );
         }
     } );
 };
 
 // 获取 一个用户信息
 userScheam.statics.addUserInfo = function( userInfo ) {
-    return new Promise( async ( resolve ) => {
+    return new Promise( async ( resolve, reject ) => {
         await this.create( userInfo, ( err, candies ) => {
-            resolve( err, candies );
+            if( err ){
+                reject( err );
+            } else {
+                resolve( candies );
+            }
         } );
     } );
 };
@@ -49,11 +52,37 @@ userScheam.statics.setRole = function( userRole ) {
     } );
 };
 
+userScheam.statics.updateUser = function ( userInfo ){
+    return new Promise( async ( resolve ) => {
+        await this.updateOne( {userCode: userInfo.userCode}, userInfo, {runValidators: true, new: true}, ( err, doc ) => {
+            resolve( err, doc );
+        }  );
+    } );
+};
+
 const User = Mongose.model( "System_User", userScheam );
+
 // 初始化 user 数据
-User.find( {userName: "admin"}, ( err, data ) => {
+User.findOne( {userCode: "admin"}, ( err, data ) => {
+    if( err ){
+        console.log( err );
+    } else
     if ( !data ) {
-        User.create( {userName: "admin", age: 22} );
+        const initUser = {
+            userCode: "admin",
+            userName: "admin",
+            accountName: "admin",
+            pwd: "admin",
+            gander: 1,
+            age: 22,
+            address: "北京",
+            QQ: "12345",
+            email: "admin@admin.com",
+            phone: "13888888888",
+            operateTime: new Date(),
+            enable: true,
+        };
+        User.create( initUser );
     }
 } );
 

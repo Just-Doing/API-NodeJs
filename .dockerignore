@@ -1,0 +1,3 @@
+# docker 在build是 将会忽略这些路径
+    .vscode
+    node_modules

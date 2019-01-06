@@ -43,7 +43,7 @@ export default {
     phone: {
         type: String,
         validate: {
-            validator: /^0\d{2,3}\d{7,8}/,
+            validator: /^1(3|4|5|7|8)\d{9}$/,
         },
     },
     operateTime: {

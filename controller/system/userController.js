@@ -12,16 +12,35 @@ class UserController {
     }
 
     async addUser( req, res, next ) {
-        const reqBody = req.body;
+        const reqBody = req.body.params;
+        reqBody.operateTime = new Date();
+        reqBody.pwd = "123";
         User.addUserInfo( reqBody )
+            .then( ( doc ) => {
+                res.send( doc );
+            }, ( error ) => {
+                if( error.name === "ValidationError" ){
+                    res.send( {
+                        status: 0,
+                        msg: error,
+                    } );
+                }else {
+                    next( error );
+                }
+            } );
+    }
+
+    async updateUser( req, res, next ) {
+        const userInfo = req.body;
+        await User.updateUser( userInfo )
             .then( ( error, doc ) => {
-                if ( error ) {
-                    if( error.name === "ValidationError" ){
+                if( error ){
+                    if( error.name === "ValidationError" ) {
                         res.send( {
                             status: 0,
-                            msg: error,
+                            msg:error,
                         } );
-                    }else {
+                    } else {
                         next( error );
                     }
                 } else {

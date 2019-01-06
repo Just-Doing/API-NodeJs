@@ -5,9 +5,9 @@ const chai = require( "chai" );
 require( "should" );
 
 const {expect} = chai;
-
+const host = "http://localhost:3000";
 it( "api:menu/get ==> should return menus", ( done ) => {
-    http.get( "http://localhost:3000/system/menu/get", ( res ) => {
+    http.get( `${host}/system/menu/get`, ( res ) => {
         res.setEncoding( "utf8" );
         res.on( "data", ( text ) => {
             assert.equal( res.statusCode, 200 );
@@ -20,7 +20,7 @@ it( "api:menu/get ==> should return menus", ( done ) => {
 } );
 
 it( "api:menu/put ==> should return a object", ( ) => {
-    axios.post( "http://localhost:3000/system/menu/put", {} ).then( ( res ) => {
+    axios.post( `${host}/system/menu/put`, {} ).then( ( res ) => {
         assert.equal( res.statusCode, 200 );
         expect( res ).to.be.an( "object" );
     } );
@@ -28,7 +28,7 @@ it( "api:menu/put ==> should return a object", ( ) => {
 
 
 it( "api:menu/setpower ==> should return a object", ( ) => {
-    axios.post( "http://localhost:3000/system/menu/setMenu", {} ).then( ( res ) => {
+    axios.post( `${host}/system/menu/setMenu`, {} ).then( ( res ) => {
         assert.equal( res.statusCode, 200 );
         expect( res ).to.be.an( "object" );
     } );

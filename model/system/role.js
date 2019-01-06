@@ -14,12 +14,9 @@ roleSchema.statics.addRole = function( roleInfo ){
 
 roleSchema.statics.deleteRole = function( condition ){
     return new Promise( async ( resolve ) => {
-        const dbData = this.findOne( {roleCode: condition.roleCode} );
-        if( dbData ){
-            await this.findOneAndDelete( role, ( err, doc ) => {
-                resolve( err, doc );
-            } );
-        }
+        await this.findOneAndDelete( {roleCode: condition.roleCode}, ( err, doc ) => {
+            resolve( err, doc );
+        } );
     } );
 };
 
@@ -30,7 +27,13 @@ roleSchema.statics.getRole = function( condition ){
     } );
 };
 
-
+roleSchema.statics.updateRole = function( roleInfo ) {
+    return new Promise( async ( resolve ) => {
+        await this.updateOne( {roleCode: roleInfo.roleCode}, roleInfo, ( err, doc ) => {
+            resolve( err, doc );
+        } );
+    } );
+};
 
 const Role = Mongose.model( "role", roleSchema );
 

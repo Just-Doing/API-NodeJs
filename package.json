@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run test",
-    "dev": "eslint ./**/*.js --fix && cross-env NODE_ENV=development supervisor --harmony index.js"
+    "dev": "cross-env NODE_ENV=development supervisor --harmony index.js",
+    "lint": "eslint ./**/*.js --fix",
+    "unit": "mocha ./unit/*.js -watch"
   },
   "repository": {
     "type": "git",
@@ -40,7 +42,7 @@
     "loadsh": "0.0.3",
     "log4js": "^3.0.6",
     "mongodb": "^3.1.10",
-    "mongoose": "^5.3.12",
+    "mongoose": "^5.4.2",
     "should": "^13.2.3",
     "validate": "^4.5.1",
     "validator": "^10.9.0"
