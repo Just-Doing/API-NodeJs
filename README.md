@@ -19,11 +19,11 @@ $ npm run dev         # visit http://localhost:3000/system/users/get?w=
 ### API List
 ``` list
     url                    type                  para
-/system/users/get           get                  w=
+/system/users/get           get                  name=xx&enable=1
 /system/users/put           post                 {}
-/system/menu/get            get                  w=
+/system/menu/get            get                  name=xx&enable=1
 /system/menu/put            post                 {}
-/system/role/get            get                  w=
+/system/role/get            get                  name=xx&enable=1
 /system/role/put            post                 {}
 ```
 ### Use by docker
