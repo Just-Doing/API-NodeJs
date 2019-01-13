@@ -2,7 +2,7 @@
 
 module.exports = {
     port: parseInt( process.env.PORT, 10 ) || 3000,
-    systemDb: "mongodb://172.17.0.1:27017/systemDb",
+    systemDb: "mongodb://172.31.200.121:27017/systemDb",
     // systemDb: "mongodb://localhost:27017/systemDb",
     businessDb: "mongodb://localhost:27017/businessDb",
     session: {
