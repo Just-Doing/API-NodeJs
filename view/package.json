@@ -72,7 +72,7 @@
   "scaffoldConfig": {
     "builder": "ice-scripts",
     "name": "ice-government-management-admin",
-    "title": "XXXX后台",
+    "title": "平台管理",
     "categories": [
       "行业领域"
     ],

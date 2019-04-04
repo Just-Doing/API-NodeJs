@@ -24,7 +24,7 @@ class MainRoutes extends Component {
         {/* 渲染路由表 */}
         {routerData.map(this.renderNormalRoute)}
 
-        {/* 根路由默认重定向到 /XXXX后台 */}
+        {/* 根路由默认重定向到 /平台管理 */}
         <Redirect from="/system" to="/system/users" />
         <Redirect from="/" to="/dashboard" />
 

@@ -12,7 +12,7 @@ class UserController {
     }
 
     async addUser( req, res, next ) {
-        const reqBody = req.body.params;
+        const reqBody = req.body;
         reqBody.operateTime = new Date();
         reqBody.pwd = "123";
         User.addUserInfo( reqBody )
@@ -62,7 +62,7 @@ class UserController {
                             status: 0,
                             msg: error,
                         } );
-                    }else {
+                    } else {
                         next( error );
                     }
                 } else {

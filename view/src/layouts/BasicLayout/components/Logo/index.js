@@ -5,7 +5,7 @@ export default class Logo extends PureComponent {
   render() {
     return (
       <Link to="/" style={{ ...styles.logoStyle, ...this.props.style }}>
-        XXXX后台
+        平台管理
       </Link>
     );
   }
